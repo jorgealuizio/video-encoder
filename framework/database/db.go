@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/go-gorm/gorm"
-	_ "github.com/go-gorm/gorm/dialects/sqlite"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	_ "github.com/lib/pq"
 	"video-encoder/domain"
 	"log"
