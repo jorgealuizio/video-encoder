@@ -17,7 +17,7 @@ type VideoRepositoryDb struct {
 }
 
 func NewVideoRepository(db *gorm.DB) *VideoRepositoryDb {
-	return VideoRepositoryDb{Db:db}
+	return &VideoRepositoryDb{Db:db}
 }
 
 func (repository VideoRepositoryDb) Insert(video *domain.Video) (*domain.Video, error) {
@@ -35,12 +35,12 @@ func (repository VideoRepositoryDb) Insert(video *domain.Video) (*domain.Video, 
 }
 
 func (repository VideoRepositoryDb) Find(id string) (*domain.Video, error) {
-	var video = domain.Video
-	repository.Db.First(&video, "id = ?", id)
+	var video domain.Video
+	repository.Db.Preload("Jobs").First(&video, "id = ?", id)
 
 	if video.ID == "" {
 		return nil, fmt.Errorf("video does not exists")
 	}
 
-	return video, nil
+	return &video, nil
 }
