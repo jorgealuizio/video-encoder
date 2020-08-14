@@ -2,7 +2,7 @@ package services
 
 import(
 	"video-encoder/domain"
-	"video-encoder/repositories"
+	"video-encoder/application/repositories"
 	"os"
 	"errors"
 	"strconv"
